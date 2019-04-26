@@ -1,0 +1,154 @@
+{%extends 'analysis/index.html'%}
+{%load staticfiles%}
+{%block xgarea%}
+<br>
+<div class="jumbotron">
+  <h1 class="display-4">YAY! Results are Out!</h1>
+  <p class="lead">The Accuracy Score, Confusion Matrix and Auc Score graph for the analysis.</p>
+  <hr class="my-4">
+</div>
+
+<div id="accordion">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Accuracy Score
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+       Accuracy is one metric for evaluating classification models. Informally, accuracy is the fraction of predictions our model got right. Formally, accuracy has the following definition:<br>
+       <br>
+       Accuracy=Number of correct predictions/Total number of predictions<br>
+       For binary classification, accuracy can also be calculated in terms of positives and negatives as follows:<br>
+       <br>Accuracy=(TP+TN) / (TP+TN+FP+FN)<br>
+
+       Where TP = True Positives, TN = True Negatives, FP = False Positives, and FN = False Negatives.<br>
+       <!-- Button trigger modal -->
+       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#accuracyModal">
+         Accuracy!
+       </button>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Confusion Matrix
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body">
+      An NxN table that summarizes how successful a classification model's predictions were;<br>
+       that is, the correlation between the label and the model's classification.<br>
+       <br>One axis of a confusion matrix is the label that the model predicted, and the other axis is the actual <br>
+       N represents the number of classes. In a binary classification problem, N=2.<br><br>
+       Confusion matrices contain sufficient information to calculate a variety of performance metrics, including precision and recall.<br>
+       <!-- Button trigger modal -->
+       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confusionMatrixModal">
+         Confusion Matrix!
+       </button>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          ROC Curve
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body">
+      An ROC curve (receiver operating characteristic curve) is a graph showing the performance of a classification model at all classification thresholds.<br>
+       This curve plots two parameters:<br><br>
+       <ul>
+        <li>True Positive Rate</li>
+        <li>False Positive Rate</li>
+       </ul>
+       <br>
+       <b>True Positive Rate (TPR)</b> is a synonym for recall and is therefore defined as follows:<br>
+       TPR = TP /(TP+FN)<br><br>
+       <b>False Positive Rate (FPR)</b> is defined as follows:<br>
+       FPR = FP /(FP+TN)<br>
+       <!-- Button trigger modal -->
+       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#rocCurveModal">
+         ROC Curve!
+       </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="accuracyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Accuracy Score</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        The accuracy Score for the model is:<br>  {{accuracy}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="confusionMatrixModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confusion Matrix</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <img src="{% static 'analysis/images/adaboostconf.png'%}" width="450" height="450" alt="">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="rocCurveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confusion Matrix</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <img src="{%static 'analysis/images/adaboostgraph.png'%}" width="450" height="450" alt="">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+
+{%endblock%}

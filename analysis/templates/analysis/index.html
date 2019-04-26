@@ -1,0 +1,56 @@
+{% extends 'analysis/base.html' %}
+{%load staticfiles%}
+    {%block content%}
+    <br>
+    <div class = "container">
+        <div class="row">
+            <div class="row">
+                  <div class="col-sm-4">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">XGboost Algorithm</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                          <div class="form-inline">
+                              <form action="{% url 'xgboostanalyse'%}" method="get">
+                                  <button type="submit" onclick="submitanalyse()" class="btn btn-primary">Analyse</button>
+                              </form>
+                              <button type="button" class="btn btn-secondary">Documentation</button>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">Random Forest Algorithm</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                            <div class="form-inline">
+                                  <form action="{% url 'randomforestanalyse'%}" method="get">
+                                          <button type="submit" onclick="submitanalyse()" class="btn btn-primary">Analyse</button>
+                                    </form>
+                                  <button type="button" class="btn btn-secondary">Documentation</button>
+                            </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">ADABoost Algorithm</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <div class="form-inline">
+                                  <form action="{% url 'adaboostanalyse'%}" method="get">
+                                          <button type="submit" onclick="submitanalyse()" class="btn btn-primary">Analyse</button>
+                                    </form>
+                                  <button type="button" class="btn btn-secondary">Documentation</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+        {%block xgarea%}
+        {%endblock%}
+    </div>
+
+    {% endblock %}

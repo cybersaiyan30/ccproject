@@ -1,0 +1,3 @@
+function submitanalyse(){
+$.blockUI({message:'<h1>Preparing Score</h1>'});
+}

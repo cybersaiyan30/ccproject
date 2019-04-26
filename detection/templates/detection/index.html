@@ -1,0 +1,92 @@
+{% extends 'detection/base.html' %}
+{%load staticfiles%}
+{%block contentdetect%}
+
+<!--  <form method="post" enctype="multipart/form-data">-->
+<!--    {% csrf_token %}-->
+<!--    <input type="file" name="myfile">-->
+<!--      <select name="model">-->
+<!--          <option value="1">XgBoost</option>-->
+<!--          <option value="2">RandomForest</option>-->
+<!--          <option value="3">ADABoost</option>-->
+<!--      </select>-->
+<!--    <button type="submit">Upload</button>-->
+<!--  </form>-->
+
+<!--  {% if uploaded_file_url %}-->
+<!--    <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>-->
+<!--    {{y_pred}}-->
+<!--  {% endif %}-->
+
+<!--  <p><a href="{% url 'detect' %}">Return to home</a></p>-->
+
+
+<div class="jumbotron">
+    <h1>Detection</h1>
+    <p>
+        Here you can pick up the encrypted usecases and select the appropriate algorithm.<br>
+        The trained model will predict whether the credit card transaction is fraudulent or not based on the prediction result of the analysis.<br>
+    </p>
+</div>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card text-white bg-info mb-3">
+                  <div class="card-header">
+                    INPUT
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">File Upload</h5>
+                    <p class="card-text">Select the file that you want to upload as a usecase to the model.</p>
+                      <label class="btn btn-primary">BROWSE<input type="file" name="myfile" hidden="true"></label>
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card text-white bg-info mb-3">
+                  <div class="card-header">
+                    INPUT
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Select Algorithm</h5>
+                    <p class="card-text">Choose the algorithm that you want to test your usecase data with.</p>
+<!--                    <a href="#" class="btn btn-primary">Go somewhere</a>-->
+                      <select class="form-control" name="model">
+                          <option value="1">XgBoost</option>
+                          <option value="2">RandomForest</option>
+                          <option value="3">ADABoost</option>
+                      </select>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col-md-12">
+                <div class="card text-center">
+                      <div class="card-body">
+                          <h5 class="card-title"><b>Detect</b></h5>
+                        <p class="card-text">Click to check whether the selected usecase is fraud or not</p>
+                          <button class="btn btn-primary"  type="submit">Predict</button>
+                      </div>
+                      <div class="card-footer ">
+                          {% if uploaded_file_url %}
+                                <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
+                                {% if y_pred %}
+                                    <h4>Transaction is <strong>Fraudulent</strong></h4>
+                                {% else %}
+                                    <h4>Transaction is <strong>NON-Fraudulent</strong></h4>
+                                {% endif %}
+                          {% endif %}
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<br>
+
+
+{%endblock%}

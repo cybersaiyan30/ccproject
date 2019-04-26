@@ -1,0 +1,12 @@
+
+.nav-link{
+font-weight:800;
+font-size:1.25em;
+margin-left:30px;
+margin-top:3px;
+margin-bottom:3px;
+padding-left:30px;
+}
+.form-control{
+height: calc(1.5em + .75rem + 10px);
+}
