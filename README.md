@@ -1,4 +1,11 @@
 # ccproject
+
+<h1>Credit Card Fraud Detection</h1>
+<br>
+The Project is done using django , python , html , css , bootstrap and javascript.<br>
+Used the Random Forest Algorithm , XGboost and ADABoost algorithm of Machine Learning.<br>
+This project also has a interactive UI Front End. <br>
+
 Install The required dependencies
 
 pip3 install python //version 3.7.2
